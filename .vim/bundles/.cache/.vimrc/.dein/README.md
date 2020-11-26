@@ -1,134 +1,62 @@
-Neosnippet
-==========
+# vim-airline-themes [![Build Status](https://travis-ci.org/vim-airline/vim-airline-themes.svg?branch=master)](https://travis-ci.org/vim-airline/vim-airline-themes) [![reviewdog](https://github.com/vim-airline/vim-airline-themes/workflows/reviewdog/badge.svg?branch=master&event=push)](https://github.com/vim-airline/vim-airline-themes/actions?query=workflow%3Areviewdog+event%3Apush+branch%3Amaster)
 
-The Neosnippet plug-In adds snippet support to Vim. Snippets are
-small templates for commonly used code that you can fill in on the
-fly. To use snippets can increase your productivity in Vim a lot.
-The functionality of this plug-in is quite similar to plug-ins like
-snipMate.vim. But since you can choose snippets with the
-[deoplete](https://github.com/Shougo/deoplete.nvim) interface, you might have
-less trouble using them, because you do not have to remember each snippet name.
+This is the official theme repository for [vim-airline][11]
 
-**Note**: Active development on neosnippet.vim has stopped. The only future
-changes will be bug fixes.
+# Installation
 
-Please see [Deoppet.nvim](https://github.com/Shougo/deoppet.nvim).
+This plugin follows the standard runtime path structure, and as such it can be installed with a variety of plugin managers:
 
-Installation
-------------
+| Plugin Manager | Install with... |
+| -------------  | ------------- |
+| [Pathogen][4]  | `git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes`<br/>Remember to run `:Helptags` to generate help tags |
+| [NeoBundle][5] | `NeoBundle 'vim-airline/vim-airline-themes'` |
+| [Vundle][6]    | `Plugin 'vim-airline/vim-airline-themes'` |
+| [Plug][7]      | `Plug 'vim-airline/vim-airline-themes'` |
+| [VAM][8]       | `call vam#ActivateAddons([ 'vim-airline-themes' ])` |
+| [Dein][9]      | `call dein#add('vim-airline/vim-airline-themes')` |
+| [minpac][10]   | `call minpac#add('vim-airline/vim-airline-themes')` |
+| pack feature (native Vim 8 package feature)| `git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/pack/dist/start/vim-airline-themes`<br/>Remember to run `:helptags ~/.vim/pack/dist/start/vim-airline-themes/doc` to generate help tags |
+| manual         | copy all of the files into your `~/.vim` directory |
 
-To install neosnippet and other Vim plug-ins it is recommended to use one of the
-popular package managers for Vim, rather than installing by drag and drop all
-required files into your `.vim` folder.
+# Using a Theme
 
-Notes:
+Once installed, use  `:AirlineTheme <theme>` to set the theme, e.g. `:AirlineTheme simple`
 
-* Vim 7.4 or above is needed.
+To set in .vimrc, use `let g:airline_theme='<theme>'`, e.g. `let g:airline_theme='simple'`
 
-* Vim 8.0 or above or neovim is recommended.
+**Note:** The command `:AirlineTheme` is only available, if you have also cloned and installed the main [vim-airline][11] repository.
 
-* Default snippets files are available in:
-  [neosnippet-snippets](https://github.com/Shougo/neosnippet-snippets)
+# Contribution Guidelines
 
-* Installing default snippets is optional. If choose not to install them,
-  you must deactivate them with `g:neosnippet#disable_runtime_snippets`.
+## New themes
 
-* deoplete is not required to use neosnippet, but it's highly recommended.
+* Pull requests for new themes are welcome.  Please be sure to include a screenshot.  You can paste an image into issue [#1](https://github.com/vim-airline/vim-airline-themes/issues/1), and then editing the post to reveal the uploaded image URL.  Please don't forgot to update the documentation.
 
-* Extra snippets files can be found in:
-  [vim-snippets](https://github.com/honza/vim-snippets).
+## Modifications to existing themes
 
-### Vundle
+* Themes are subjective, so if you are going to make modifications to an existing theme, please expose a configurable variable to allow users to choose how the theme will react.
 
-```vim
-Plugin 'Shougo/deoplete.nvim'
-if !has('nvim')
-  Plugin 'roxma/nvim-yarp'
-  Plugin 'roxma/vim-hug-neovim-rpc'
-endif
+# Screenshots
 
-Plugin 'Shougo/neosnippet.vim'
-Plugin 'Shougo/neosnippet-snippets'
-```
+Screenshots are in the process of being migrated here.  In the meantime you can find screenshots in the existing repository's [Wiki](https://github.com/vim-airline/vim-airline/wiki/Screenshots).
 
-### dein.vim
+# Maintenance
 
-```vim
-call dein#add('Shougo/deoplete.nvim')
-if !has('nvim')
-  call dein#add('roxma/nvim-yarp')
-  call dein#add('roxma/vim-hug-neovim-rpc')
-endif
-let g:deoplete#enable_at_startup = 1
+If you are interested in becoming the official maintainer of this project, please contact [**@bling**][1], [**@chrisbra**][2], or [**@mhartington**][3].
 
-call dein#add('Shougo/neosnippet.vim')
-call dein#add('Shougo/neosnippet-snippets')
-```
+# License
 
-### vim-plug
+MIT License. Copyright (c) 2013-2020 Bailey Ling & Contributors.
 
-```vim
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
 
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
-```
-
-Configuration
--------------
-
-This is an example `~/.vimrc` configuration for Neosnippet. It is assumed you
-already have deoplete configured. With the settings of the example, you can use
-the following keys:
-
-* `C-k` to select-and-expand a snippet from the deoplete popup (Use `C-n`
-  and `C-p` to select it). `C-k` can also be used to jump to the next field in
-  the snippet.
-
-* `Tab` to select the next field to fill in the snippet.
-
-```vim
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-```
-
-If you want to use a different collection of snippets than the
-built-in ones, then you can set a path to the snippets with
-the `g:neosnippet#snippets_directory` variable (e.g [Honza's
-Snippets](https://github.com/honza/vim-snippets))
-
-But if you enable `g:neosnippet#enable_snipmate_compatibility`, neosnippet will
-load snipMate snippets from runtime path automatically.
-
-```vim
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-```
-
+[1]: https://github.com/bling
+[2]: https://github.com/chrisbra
+[3]: https://github.com/mhartington
+[4]: https://github.com/tpope/vim-pathogen
+[5]: https://github.com/Shougo/neobundle.vim
+[6]: https://github.com/VundleVim/Vundle.vim
+[7]: https://github.com/junegunn/vim-plug
+[8]: https://github.com/MarcWeber/vim-addon-manager
+[9]: https://github.com/Shougo/dein.vim
+[10]: https://github.com/k-takata/minpac/
+[11]: https://github.com/vim-airline/vim-airline
