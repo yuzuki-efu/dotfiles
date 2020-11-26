@@ -27,3 +27,9 @@ hook_add = '''
  endfunction
 '''
 
+[[plugins]]
+repo = 'preservim/nerdtree'
+hook_add = '''
+ let NERDTreeShowHidden=1
+ map <C-a> :NERDTreeToggle<CR>
+'''
