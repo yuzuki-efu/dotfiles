@@ -31,5 +31,5 @@ hook_add = '''
 repo = 'preservim/nerdtree'
 hook_add = '''
  let NERDTreeShowHidden=1
- map <C-a> :NERDTreeToggle<CR>
+  nnoremap <silent><C-a> :NERDTreeToggle<CR>:vertical res 30<CR>
 '''
