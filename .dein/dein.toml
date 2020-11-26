@@ -57,3 +57,9 @@ hook_add = '''
     highlight GitGutterDelete ctermfg=red
     highlight GitGutterChangeDelete ctermfg=yellow
 '''
+
+[[plugins]]
+repo = 'tomtom/tcomment_vim'
+hook_add = '''
+    vnoremap ? :'<,'>TComment<CR>
+'''
